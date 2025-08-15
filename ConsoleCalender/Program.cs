@@ -90,10 +90,18 @@ namespace ConsoleCalender
             Console.Write("Enter the number of the note to edit: ");
             string input = Console.ReadLine();
 
-            if (int.TryParse(input, out int choice) && calendar.EditEntry(choice - 1, PromptForNote()))
-                Console.WriteLine("Note updated.");
+            if (int.TryParse(input, out int choice) && choice > 1 && choice <= entries.Length)
+            {
+                string newNote = PromptForNote();
+                if (calendar.EditEntry(choice, newNote))
+                {
+                    Console.WriteLine("Note updated.");
+                }
+            }
             else
-                Console.WriteLine("Invalid selection.");
+            {
+                Console.WriteLine("There's no note available with that number");
+            }
 
             Pause();
         }
