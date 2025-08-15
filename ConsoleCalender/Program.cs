@@ -137,7 +137,7 @@ namespace ConsoleCalender
 
         static void ShowUnavailable(string action)
         {
-            Console.WriteLine($"There are no notes available. Cannot {action}.");
+            Console.WriteLine($"This is not a valid option. Cannot {action}.");
             Pause();
         }
 
