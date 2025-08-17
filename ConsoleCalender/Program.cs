@@ -65,11 +65,10 @@ namespace ConsoleCalender
                 Console.Write("Enter note: ");
                 string note = Console.ReadLine();
 
-                if (calendar.AddEntry(parsedDate, note))
-                    Console.WriteLine("Note successfully added.");
-                else
-                    Console.WriteLine("Note for this date already exists.");
+                calendar.AddEntry(parsedDate, note);
+                Console.WriteLine("Note successfully added.");
             }
+
             else
             {
                 Console.WriteLine("Invalid date format.");
@@ -82,7 +81,7 @@ namespace ConsoleCalender
         {
             var entries = calendar.GetAllEntries();
             Console.WriteLine("Choose a note to edit:");
-            for (int i = 0; i < entries.Length; i++)
+            for (int i = 0; i < entries.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {entries[i]}");
             }
@@ -90,10 +89,10 @@ namespace ConsoleCalender
             Console.Write("Enter the number of the note to edit: ");
             string input = Console.ReadLine();
 
-            if (int.TryParse(input, out int choice) && choice > 1 && choice <= entries.Length)
+            if (int.TryParse(input, out int choice) && choice >= 1 && choice <= entries.Count)
             {
                 string newNote = PromptForNote();
-                if (calendar.EditEntry(choice, newNote))
+                if (calendar.EditEntry(choice - 1, newNote))
                 {
                     Console.WriteLine("Note updated.");
                 }
@@ -110,7 +109,7 @@ namespace ConsoleCalender
         {
             var entries = calendar.GetAllEntries();
             Console.WriteLine("Choose a note to delete:");
-            for (int i = 0; i < entries.Length; i++)
+            for (int i = 0; i < entries.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {entries[i]}");
             }

@@ -1,67 +1,33 @@
-﻿namespace ConsoleCalender
-{
-    public class Calendar
+﻿    namespace ConsoleCalender
     {
-        private NoteEntry[] entries = new NoteEntry[10];     
-        private int count = 0;
-
-        public bool AddEntry(DateOnly date, string note)
+        public class Calendar
         {
-            for (int i = 0; i < count; i++)
+            private List<NoteEntry> entries = new();
+
+            public void AddEntry(DateOnly date, string note)
             {
-                if (entries[i].Date == date) return false;
+                entries.Add(new NoteEntry(date, note));
+        }
+            public bool EditEntry(int index, string newNote)
+            {
+                if (index < 0 || index >= entries.Count) return false;
+
+                entries[index].Note = newNote;
+                return true;
+            }
+            public bool DeleteEntry(int index)
+            {
+                if (index < 0 || index >= entries.Count) return false;
+
+                entries.RemoveAt(index);
+                return true;
             }
 
-            if (count == entries.Length)
+            public List<NoteEntry> GetAllEntries()
             {
-                ResizeArray();
+                return entries;
             }
 
-            entries[count++] = new NoteEntry(date, note);
-            return true;
+            public int Count => entries.Count;
         }
-
-        private void ResizeArray()
-        {
-            int newSize = entries.Length * 2;
-            NoteEntry[] newArray = new NoteEntry[newSize];
-            for (int i = 0; i < entries.Length; i++)
-            {
-                newArray[i] = entries[i];
-            }
-            entries = newArray;
-        }
-
-        public bool EditEntry(int index, string newNote)
-        {
-            if (index < 0 || index >= count) return false;
-            entries[index].Note = newNote;
-            return true;
-        }
-
-        public bool DeleteEntry(int index)
-        {
-            if (index < 0 || index >= count) return false;
-
-            for (int i = index; i < count - 1; i++)
-            {
-                entries[i] = entries[i + 1];
-            }
-
-            entries[--count] = null;
-            return true;
-        }
-
-        public NoteEntry[] GetAllEntries()
-        {
-            NoteEntry[] result = new NoteEntry[count];
-            for (int i = 0; i < count; i++)
-            {
-                result[i] = entries[i];
-            }
-            return result;
-        }
-
-        public int Count => count;
     }
-}
