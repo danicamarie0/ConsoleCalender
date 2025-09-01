@@ -2,12 +2,21 @@
 
 namespace ConsoleCalender
 {
+   
     internal class Program
     {
         static readonly Calendar calendar = new();
 
         static void Main(string[] args)
         {
+            var entries = CSVData.GetAll();
+
+            Console.WriteLine();
+            foreach (var entry in entries)
+            {
+                Console.WriteLine(entry);
+            }
+
             while (true)
             {
                 Console.Clear();
