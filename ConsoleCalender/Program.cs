@@ -2,7 +2,7 @@
 
 namespace ConsoleCalender
 {
-   
+
     internal class Program
     {
         static readonly Calendar calendar = new();
