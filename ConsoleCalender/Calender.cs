@@ -2,11 +2,11 @@
 {
     public class Calendar
     {
-        private List<NoteEntry> entries = CSVData.GetAll();
-        public void AddEntry(DateOnly date, string note)
+        private List<NoteEntry> entries = JSONData.GetAll();
+        public void AddEntry(DateTime date, string note)
         {
             entries.Add(new NoteEntry(date, note));
-            CSVData.Overwrite(entries);
+            JSONData.Overwrite(entries);
         }
 
         public bool EditEntry(int index, string newNote)
@@ -14,7 +14,7 @@
             if (index < 0 || index >= entries.Count) return false;
 
             entries[index].Note = newNote;
-            CSVData.Overwrite(entries);
+            JSONData.Overwrite(entries);
             return true;
         }
 
@@ -23,7 +23,7 @@
             if (index < 0 || index >= entries.Count) return false;
 
             entries.RemoveAt(index);
-            CSVData.Overwrite(entries);
+            JSONData.Overwrite(entries);
             return true;
         }
 

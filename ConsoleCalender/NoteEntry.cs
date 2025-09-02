@@ -4,10 +4,10 @@ namespace ConsoleCalender
 {
     public class NoteEntry
     {
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public string Note { get; set; }
 
-        public NoteEntry(DateOnly date, string note)
+        public NoteEntry(DateTime date, string note)
         {
             Date = date;
             Note = note;

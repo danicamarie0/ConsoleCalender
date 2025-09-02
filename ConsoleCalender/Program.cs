@@ -9,7 +9,7 @@ namespace ConsoleCalender
 
         static void Main(string[] args)
         {
-            var entries = CSVData.GetAll();
+            var entries = JSONData.GetAll();
 
             Console.WriteLine();
             foreach (var entry in entries)
@@ -69,7 +69,7 @@ namespace ConsoleCalender
             Console.WriteLine($"Enter date in format ({parseFormat}):");
             string input = Console.ReadLine();
 
-            if (DateOnly.TryParseExact(input, parseFormat, culture, DateTimeStyles.None, out DateOnly parsedDate))
+            if (DateTime.TryParseExact(input, parseFormat, culture, DateTimeStyles.None, out DateTime parsedDate))
             {
                 Console.Write("Enter note: ");
                 string note = Console.ReadLine();
